@@ -10,8 +10,12 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await loginUser(email, password);
-    navigate("/dashboard");
+    try {
+      await loginUser({ email, password, tenantId: "TENANT-01" });
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -47,7 +51,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className='w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
-              placeholder='auditor@atlaslogix.test'
+              placeholder='email'
             />
           </div>
 
@@ -62,7 +66,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className='w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
-              placeholder='••••••••'
+              placeholder='password'
             />
           </div>
 
