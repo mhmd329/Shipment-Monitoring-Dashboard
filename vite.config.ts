@@ -8,9 +8,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://nexus-atlaslogix-assessment.vast-soft.com/api/docs",
+        target: "https://nexus-atlaslogix-assessment.vast-soft.com",
         changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
     },
   },

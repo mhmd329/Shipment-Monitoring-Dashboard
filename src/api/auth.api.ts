@@ -3,6 +3,7 @@ import api from "./axios";
 interface LoginPayload {
   email: string;
   password: string;
+  tenantId: string;
 }
 
 export const login = async (payload: LoginPayload) => {
